@@ -48,6 +48,9 @@ gem 'bootstrap-sass'
 gem 'spring',        group: :development
 gem 'rails-html-sanitizer', '1.0.1'
 
+gem "simple_form"
+
+
 
 
 

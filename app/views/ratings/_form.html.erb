@@ -1,0 +1,10 @@
+<%= simple_form_for @review do |f| %>
+
+<%= f.input :points %>
+<%= f.input :review %>
+<%= f.input :game_id %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+
+<%= f.submit 'Dodaj' %>
+
+<% end %>

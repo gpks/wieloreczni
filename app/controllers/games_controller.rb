@@ -21,6 +21,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @review = Rating.new
   end
 
   def edit
