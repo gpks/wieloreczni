@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  type: 
+  game_id: 1
+  minplayer: 1
+  maxplayer: 1
+  minage: 1
+
+two:
+  name: MyString
+  description: MyText
+  type: 
+  game_id: 1
+  minplayer: 1
+  maxplayer: 1
+  minage: 1
