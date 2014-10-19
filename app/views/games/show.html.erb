@@ -1,0 +1,62 @@
+<h1><%= @game.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+   <%= @game.description %>
+  </div>
+</div>
+
+<table class="table table-hover">
+<thead>
+    <tr>
+    
+    <th>Typ gry</th>
+    <th>Minimalna liczba graczy</th>
+    <th>Maksymalna liczba graczy</th>
+    <th>Minimalny wiek graczy</th>
+    <th>Średnia ocena</th>
+    <% if user_signed_in? %>
+        <th><%= "Oceń grę" %></th>
+        <th><%= "Dodaj recenzję" %></th>
+        <% end %>
+
+    </tr>
+  </thead>
+
+   
+      <tr>
+       
+        <td><%= @game.genre %></td>
+        <td><%= @game.minplayer %></td>
+        <td><%= @game.maxplayer %></td>
+        <td><%= @game.minage %></td>
+        <td><%= @game.ratings.average(:points) %></td> 
+        <% if user_signed_in? %>
+        <td><%= "tu będzie rating" %></td>
+        <td><%= "tu będzie dodawanie recenzji" %></td>
+        <% end %>
+      </tr>
+    
+</table>
+
+<table class="table">
+<thead>
+    <tr>
+    
+    <th>Użytkownik</th>
+    <th>Recenzja</th>
+    
+    </tr>
+  </thead>
+
+   
+      <tr>
+      
+       <% @game.ratings.each do |rating| %>
+        <td><%= User.find(rating.user_id).email %></td>
+        <td><%= rating.review %></td>
+        <% end %>
+        
+      </tr>
+    
+</table>
+
