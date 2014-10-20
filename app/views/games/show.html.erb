@@ -44,11 +44,16 @@
    
       
       <% @game.ratings.each do |rating| %>
-      <div class="list-group">
-        <h4 class="list-group-item-heading"><%= rating.review %></h4>
-          <p class="list-group-item-text">Użytkownik: <%= User.find(rating.user_id).email %></p>
- 
-            </div>
+      
+      <%if rating.review%>
+      <div class="panel panel-default">
+  <div class="panel-body">
+    <%= rating.review %>
+  </div>
+  <div class="panel-footer">Użytkownik: <%= User.find(rating.user_id).email %></div>
+</div> 
+      
+        <% end %>
         <% end %>
 
 <div>Dodaj własną recenzję </div>

@@ -17,7 +17,7 @@
 
    <% @games.each do |game| %>
       <tr>
-         <td><%= game.name %></td>
+         <td><%= link_to "#{game.name}", game  %></td>
         <td><%= game.genre %></td>
         <td><%= game.minplayer %></td>
         <td><%= game.maxplayer %></td>
