@@ -5,6 +5,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+     @review = Rating.new
   end
 
   def new
