@@ -9,6 +9,13 @@
 
   # validates :name, presence: true
   # validates :name, length: { minimum: 3 }
+def username
+  if name
+    name
+  else
+    email
+  end
+end
 
   
 

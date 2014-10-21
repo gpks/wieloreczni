@@ -11,4 +11,5 @@ class Game < ActiveRecord::Base
   validates :minage, inclusion: { in: 0..18 }
 
 
+
 end
