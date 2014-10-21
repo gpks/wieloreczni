@@ -7,6 +7,9 @@
   has_and_belongs_to_many :games
   has_many :ratings
 
+  # validates :name, presence: true
+  # validates :name, length: { minimum: 3 }
+
   
 
 end

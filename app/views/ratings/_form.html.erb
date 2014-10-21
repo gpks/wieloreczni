@@ -1,8 +1,10 @@
 <%= simple_form_for @review do |f| %>
 
-<%= f.input :points %>
-<%= f.input :review %>
-<%= f.input :game_id %>
+<%= f.input :points, collection: 1..10, label: "Ocena" %>
+<br>
+<%= f.input :review, label: false, placeholder: "Recenzja gry...", :input_html => {:rows =>4, :cols =>70} %>
+
+<%= f.hidden_field :game_id, :value => @game.id %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 <%= f.submit 'Dodaj' %>
