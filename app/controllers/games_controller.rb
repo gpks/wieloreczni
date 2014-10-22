@@ -1,11 +1,16 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :add]
 
 
   def index
     @games = Game.all
-     @review = Rating.new
+    @review = Rating.new
+  end
+
+  def add
+    @game.users << current_user
+    redirect_to games_path, notice: 'Game was added to your shelf.'
   end
 
   def new
@@ -27,6 +32,8 @@ class GamesController < ApplicationController
 
   def edit
   new 
+
+  
 
 
   def update
