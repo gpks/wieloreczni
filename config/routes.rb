@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
  
 
+  resources :user_shows do
+    member do
+      post "removegame"
+    end
+  end
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 
 

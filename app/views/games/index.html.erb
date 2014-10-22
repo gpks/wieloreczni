@@ -30,11 +30,13 @@
 
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :game_id, :value => game.id %>
-        <%= f.submit "oceń ",  :class => 'btn btn-primary' %> 
+        <%= f.submit "oceń ",  :class => 'btn btn-default' %> 
         <% end %></td>
         <td><button type="button" class="btn btn-primary review">Dodaj recenzję</button></td>
-        <td><%= button_to 'add to shelf', add_game_path(game), method: :post,class: "btn btn-primary" %></td>
+        <td><%= button_to 'add to shelf', add_game_path(game), method: :post, remote: true, class: "btn btn-default" %></td>
         <% end %> 
       </tr>
     <% end %>
 </table>
+
+<%= link_to "Dodaj grę", new_game_path, :class => "btn btn-primary" %>

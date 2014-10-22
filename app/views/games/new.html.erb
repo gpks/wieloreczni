@@ -1,0 +1,16 @@
+<%= simple_form_for @game do |f| %>
+
+<%= f.input :name %>
+
+<%= f.input :description, :input_html => {:rows =>4, :cols =>70} %>
+<%=  f.input :genre %>
+
+
+<%=  f.input :minplayer, collection: 1..10 %>
+<%=  f.input :maxplayer, collection: 1..100 %>
+<%=  f.input :minage, collection: 0..18 %>
+
+
+<%= f.submit 'Dodaj' %>
+
+<% end %>
