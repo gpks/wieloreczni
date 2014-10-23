@@ -1,6 +1,6 @@
 $(function(){
 $(document).ajaxSuccess(function(){ 
-        alert("Dodałeś grę");
+        swal("Dodałeś grę");
         });
 $(".btn-default").click(function(){
   $(this).addClass("disabled");
