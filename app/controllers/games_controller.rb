@@ -9,8 +9,12 @@ class GamesController < ApplicationController
   end
 
   def add
-    @game.users << current_user
-    redirect_to games_path, notice: 'Game was added to your shelf.'
+
+    if @game.users << (current_user)
+      head :ok
+    else
+      render json:@game.errors.full_messages, status: :unprocessable_entity
+    end    
   end
 
   def new

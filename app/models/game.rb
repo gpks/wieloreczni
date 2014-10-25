@@ -1,5 +1,7 @@
 class Game < ActiveRecord::Base 
-  has_and_belongs_to_many :users
+
+  has_many :games_users
+  has_many :users, :through => :games_users
   has_many :ratings
 
   validates :name, presence: true
@@ -10,6 +12,6 @@ class Game < ActiveRecord::Base
   validates :maxplayer, inclusion: { in: 1..100 }
   validates :minage, inclusion: { in: 0..18 }
 
-
+  
 
 end

@@ -33,7 +33,7 @@
         <%= f.submit "oceń ",  :class => 'btn btn-default' %> 
         <% end %></td>
         <td><button type="button" class="btn btn-primary review">Dodaj recenzję</button></td>
-        <td><%= button_to 'add to shelf', add_game_path(game), method: :post, remote: true, class: "btn btn-default" %></td>
+        <td><%= button_to 'add to shelf', add_game_path(game), method: :post, remote: true, class: "btn btn-default", form_class: "add_to_s" %></td>
         <% end %> 
       </tr>
     <% end %>

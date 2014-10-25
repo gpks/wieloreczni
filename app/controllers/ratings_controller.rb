@@ -8,9 +8,9 @@ class RatingsController < ApplicationController
   def create
     @review = Rating.new(rating_params)
     if @review.save 
-      redirect_to games_path, notice: 'review was successfully created.'
+      redirect_to :back, notice: 'review was successfully created.'
     else
-      render :new
+      redirect_to :back, alert: "brrr wrong"
     end
   end
 

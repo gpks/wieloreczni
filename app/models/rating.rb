@@ -5,12 +5,11 @@ class Rating < ActiveRecord::Base
   validates :user_id, presence: true
   validates :game_id, presence: true
   validates :points, inclusion: { in: 1..10 }
-  #validate :rate_cannot_be_changed, on: update
+  validates :game_id, uniqueness: { scope: :user_id,
+    message: "You can have only one review of a game" }
+  # validate :rate_cannot_be_changed, on: :update
 
-  # def rate_cannot_be_changed
-  #   #dreo zrobienia
-  # end
-
+  
 
 
 end
