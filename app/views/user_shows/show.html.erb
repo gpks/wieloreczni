@@ -9,7 +9,9 @@
     <th>Nazwa gry</th>
     <th>Rodzaj gry</th>
     <th>Ocena</th>
-    <th>Usuń z półki</th>
+    <% if @user==current_user %>
+    <th>Usuń z półki</th> <% end %>
+      </tr>
        </tr>
   </thead>
 
@@ -27,7 +29,8 @@
         <td>
         <%= "Jeszcze nie oceniona"%>
         <% end %>
-        <td><%= button_to 'remove', removegame_user_show_path(:type=> game), method: :post, class: "btn btn-default" %></td> 
+        <% if @user==current_user %>
+        <td><%= button_to 'remove', removegame_user_show_path(:type=> game), method: :post, class: "btn btn-default" %></td> <% end %>
       </tr>
       <% end %> 
       
