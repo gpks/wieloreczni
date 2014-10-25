@@ -19,7 +19,7 @@ class RatingsController < ApplicationController
 
   def update
     if @review.update(rating_params)
-      redirect_to games_index_path, notice: 'Rating was successfully created.'
+      redirect_to :back, notice: 'review was successfully created.'
     else
       render :edit
     end

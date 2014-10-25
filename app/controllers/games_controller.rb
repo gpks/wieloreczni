@@ -9,11 +9,12 @@ class GamesController < ApplicationController
   end
 
   def add
+    @game_user = GamesUser.new(game: @game, user: current_user)
 
-    if @game.users << (current_user)
+    if @game_user.save
       head :ok
     else
-      render json:@game.errors.full_messages, status: :unprocessable_entity
+      render json: @game_user.errors.full_messages, status: :unprocessable_entity
     end    
   end
 
@@ -31,7 +32,10 @@ class GamesController < ApplicationController
   end
 
   def show
-    @review = Rating.new
+     @existingreview = Rating.where(game: @game, user: current_user).first
+    if @existingreview.points.nil? && @existingreview.review.nil?
+      @existingreview = Rating.new
+    end
   end
 
   def edit

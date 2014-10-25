@@ -1,12 +1,28 @@
-<%= simple_form_for @review do |f| %>
 
-<%= f.input :points, collection: 1..10, label: "Ocena" %>
-<br>
-<%= f.input :review, label: false, placeholder: "Recenzja gry...", :input_html => {:rows =>4, :cols =>70} %>
+<%= simple_form_for @existingreview do |f| %>
 
 <%= f.hidden_field :game_id, :value => @game.id %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
+<% if @existingreview.points.nil? %>
+
+<%= f.input :points, label: "Ocena", collection: 1..10  %>
+<%else%>
+<div>
+<%= "Oceniłeś grę na #{@existingreview.points} punktów"%> </div>
+<% end %>
+
+<br>
+
+
+<% if @existingreview.review.nil? %>
+  <%= f.input :review, label: false, placeholder: "Recenzja gry...", :input_html => {:rows =>4, :cols =>70} %>
+<%else%>
+<%= f.input :review, label: "Edytuj swoją recenzję", :input_html => {:rows =>4, :cols =>70, :value => "#{@existingreview.review}"} %>
+<% end %>
+
+
 <%= f.submit 'Dodaj' %>
 
 <% end %>
+
