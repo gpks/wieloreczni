@@ -1,24 +1,24 @@
 
-<%= simple_form_for @existingreview do |f| %>
+<%= simple_form_for @existing_review do |f| %>
 
 <%= f.hidden_field :game_id, :value => @game.id %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
-<% if @existingreview.points.nil? %>
+<% if @existing_review.points.nil? %>
 
 <%= f.input :points, label: "Ocena", collection: 1..10  %>
 <%else%>
 <div>
-<%= "Oceniłeś grę na #{@existingreview.points} punktów"%> </div>
+<%= "Oceniłeś grę na #{@existing_review.points}"%> </div>
 <% end %>
 
 <br>
 
 
-<% if @existingreview.review.nil? %>
+<% if @existing_review.review.nil? %>
   <%= f.input :review, label: false, placeholder: "Recenzja gry...", :input_html => {:rows =>4, :cols =>70} %>
 <%else%>
-<%= f.input :review, label: "Edytuj swoją recenzję", :input_html => {:rows =>4, :cols =>70, :value => "#{@existingreview.review}"} %>
+<%= f.input :review, label: "Edytuj swoją recenzję", :input_html => {:rows =>4, :cols =>70, :value => "#{@existing_review.review}"} %>
 <% end %>
 
 

@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_game, only: [:show, :edit, :update, :destroy, :add]
+  before_action :set_review, only: [:show]
 
 
   def index
@@ -32,10 +33,7 @@ class GamesController < ApplicationController
   end
 
   def show
-     @existingreview = Rating.where(game: @game, user: current_user).first
-    if @existingreview.points.nil? && @existingreview.review.nil?
-      @existingreview = Rating.new
-    end
+     
   end
 
   def edit
@@ -65,6 +63,14 @@ end
     def set_game
       @game = Game.find(params[:id])
     end
+
+    def set_review
+      @existing_review = Rating.where(game: @game, user: current_user).first
+      unless @existing_review
+        @existing_review = Rating.new
+      end
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params

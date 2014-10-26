@@ -33,15 +33,17 @@
         <td><%= @game.minage %></td>
         <td><%= @game.ratings.average(:points) %></td> 
         <% if user_signed_in? %>
-        <% if @existingreview.points.nil? %>
-        <td><%= simple_form_for(@existingreview) do |f| %>
+        <% if @existing_review.points %>
+        <td> <%= "Oceniłeś grę na #{@existing_review.points}"%></td>
+        <% else %>
+        <td><%= simple_form_for(@existing_review) do |f| %>
          <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :game_id, :value => @game.id %>        
         <%= f.input :points, label: false, collection: 1..10 %>      
          <%= f.submit "oceń "%> 
        <% end %>
-       <% else %>
-      <td> <%= "Oceniłeś grę na #{@existingreview.points} punktów"%></td>
+       
+      
          <% end %>
           </td>
         <td><%= "tu będzie dodawanie recenzji" %></td>
