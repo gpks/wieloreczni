@@ -25,13 +25,17 @@
         <td><%= game.minage %></td>
         <td><%= game.ratings.average(:points) %></td> 
         <% if user_signed_in? %>
-        <td><%= simple_form_for(@review) do |f| %>
+        <% if game.ratings.where(user: current_user).first_or_initialize.points.nil? %>
+        <td><%= simple_form_for(game.ratings.where(user: current_user).first_or_initialize) do |f| %>
         <%= f.input :points, label: false, collection: 1..10 %>
 
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :game_id, :value => game.id %>
-        <%= f.submit "oceń ",  :class => 'btn btn-default' %> 
-        <% end %></td>
+        
+        <%= f.submit "oceń ",  :class => 'btn btn-default' %> </td>
+        <% end %>
+        <%else%>
+        <td><%= "Oceniłeś grę na #{game.ratings.where(user: current_user).first_or_initialize.points}"%></td>
+        <% end %>
+        
         <td><button type="button" class="btn btn-primary review">Dodaj recenzję</button></td>
         <td><%= button_to 'add to shelf', add_game_path(game), method: :post, remote: true, class: "btn btn-default", form_class: "add_to_s" %></td>
         <% end %> 

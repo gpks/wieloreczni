@@ -65,10 +65,7 @@ end
     end
 
     def set_review
-      @existing_review = Rating.where(game: @game, user: current_user).first
-      unless @existing_review
-        @existing_review = Rating.new
-      end
+      @existing_review = Rating.where(game: @game, user: current_user).first_or_initialize
     end
 
 
