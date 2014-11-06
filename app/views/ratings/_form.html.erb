@@ -6,23 +6,23 @@
 
 <% if @existing_review.points.nil? %>
 
-<%= f.input :points, label: "Ocena", collection: 1..10  %>
+<%= f.input :points, label: "Rating", collection: 1..10  %>
 <%else%>
 <div>
-<%= "Oceniłeś grę na #{@existing_review.points}"%> </div>
+<%= "You rated the game: #{@existing_review.points}"%> </div>
 <% end %>
 
 <br>
 
 
 <% if @existing_review.review.nil? %>
-  <%= f.input :review, label: false, placeholder: "Recenzja gry...", :input_html => {:rows =>4, :cols =>70} %>
+  <%= f.input :review, label: false, placeholder: "Game review", :input_html => {:rows =>4, :cols =>70} %>
 <%else%>
-<%= f.input :review, label: "Edytuj swoją recenzję", :input_html => {:rows =>4, :cols =>70, :value => "#{@existing_review.review}"} %>
+<%= f.input :review, label: "Edit your review", :input_html => {:rows =>4, :cols =>70, :value => "#{@existing_review.review}"} %>
 <% end %>
 
 
-<%= f.submit 'Dodaj' %>
+<%= f.submit 'Add' %>
 
 <% end %>
 

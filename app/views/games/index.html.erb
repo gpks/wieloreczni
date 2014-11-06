@@ -28,6 +28,8 @@
         <% if game.ratings.where(user: current_user).first_or_initialize.points.nil? %>
         <td><%= simple_form_for(game.ratings.where(user: current_user).first_or_initialize) do |f| %>
         <%= f.input :points, label: false, collection: 1..10 %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :game_id, :value => game.id %>
 
         
         <%= f.submit "oceń ",  :class => 'btn btn-default' %> </td>

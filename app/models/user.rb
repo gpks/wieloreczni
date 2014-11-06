@@ -11,22 +11,13 @@
 
    validates :name, presence: true
    validates :name, length: { minimum: 3 }
-   validate :one_game_one_user
     
 
 def username
   name? ? name : email
 end
 
-def one_game_one_user 
-  puts self.games
-  # if self.games.include? game
-  #   puts "error"
-  #   errors.add(:base, "You have this game")
-  # else
-  #   puts "przeszło"
-  # end
-end
+
 
 
   
