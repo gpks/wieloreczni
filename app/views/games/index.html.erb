@@ -1,16 +1,16 @@
 <table class="table table-hover">
    <thead>
     <tr>
-    <th>Nazwa gry</th>
-    <th>Typ gry</th>
-    <th>Minimalna liczba graczy</th>
-    <th>Maksymalna liczba graczy</th>
-    <th>Minimalny wiek graczy</th>
-    <th>Średnia ocena</th>
+    <th>Name</th>
+    <th>Genre</th>
+    <th>Minimum number of players</th>
+    <th>Maximum number of players</th>
+    <th>Minimum age</th>
+    <th>Avarage rating</th>
     <% if user_signed_in? %>
-        <th><%= "Oceń grę" %></th>
-        <th><%= "Dodaj recenzję" %></th>
-        <th><%= "Dodaj do swojej półki" %></th>
+        <th><%= "Rate the game" %></th>
+        <th><%= "Add review" %></th>
+        <th><%= "Add to your shelf" %></th>
         <% end %>
 
     </tr>
@@ -35,14 +35,14 @@
         <%= f.submit "oceń ",  :class => 'btn btn-default' %> </td>
         <% end %>
         <%else%>
-        <td><%= "Oceniłeś grę na #{game.ratings.where(user: current_user).first_or_initialize.points}"%></td>
+        <td><%= "You rated the game #{game.ratings.where(user: current_user).first_or_initialize.points}"%></td>
         <% end %>
         
-        <td><button type="button" class="btn btn-primary review">Dodaj recenzję</button></td>
+        <td><button type="button" class="btn btn-primary review">Add review</button></td>
         <td><%= button_to 'add to shelf', add_game_path(game), method: :post, remote: true, class: "btn btn-default", form_class: "add_to_s" %></td>
         <% end %> 
       </tr>
     <% end %>
 </table>
 
-<%= link_to "Dodaj grę", new_game_path, :class => "btn btn-primary" %>
+<%= link_to "Add game", new_game_path, :class => "btn btn-primary" %>

@@ -11,14 +11,14 @@
 <thead>
     <tr>
     
-    <th>Typ gry</th>
-    <th>Minimalna liczba graczy</th>
-    <th>Maksymalna liczba graczy</th>
-    <th>Minimalny wiek graczy</th>
-    <th>Średnia ocena</th>
+    <th>Genre</th>
+    <th>Minimum number of players</th>
+    <th>Maximum number of players</th>
+    <th>Minimum age</th>
+    <th>Avarage rating</th>
     <% if user_signed_in? %>
-        <th><%= "Oceń grę" %></th>
-        <th><%= "Dodaj recenzję" %></th>
+        <th><%= "Rate the game" %></th>
+        <th><%= "Add review" %></th>
         <% end %>
 
     </tr>
@@ -34,7 +34,7 @@
         <td><%= @game.ratings.average(:points) %></td> 
         <% if user_signed_in? %>
         <% if @existing_review.points %>
-        <td> <%= "Oceniłeś grę na #{@existing_review.points}"%></td>
+        <td> <%= "You rated the game #{@existing_review.points}"%></td>
         <% else %>
         <td><%= simple_form_for(@existing_review) do |f| %>
          <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -46,7 +46,7 @@
       
          <% end %>
           </td>
-        <td><%= "tu będzie dodawanie recenzji" %></td>
+        <td><%= "Adding review?" %></td>
         <% end %> 
       </tr>
       </tr>
@@ -63,12 +63,12 @@
   <div class="panel-body">
     <%= rating.review %>
   </div>
-  <div class="panel-footer">Użytkownik: <%= User.find(rating.user_id).username %></div>
+  <div class="panel-footer">User: <%= User.find(rating.user_id).username %></div>
 </div> 
       
         <% end %>
         <% end %>
 
-<div><h2>Dodaj własną recenzję </h2></div>
+<div><h2>Add review </h2></div>
 <%= render "ratings/form"%>
 
