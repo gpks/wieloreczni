@@ -1,74 +1,81 @@
 <div class="page-header">
-<h1><%= @game.name %></h1>
+  <h1><%= @game.name %></h1>
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
    <%= @game.description %>
-  </div>
+ </div>
 </div>
 
 <table class="table table-hover">
-<thead>
+  <thead>
     <tr>
-    
-    <th>Genre</th>
-    <th>Minimum number of players</th>
-    <th>Maximum number of players</th>
-    <th>Minimum age</th>
-    <th>Avarage rating</th>
-    <% if user_signed_in? %>
-        <th><%= "Rate the game" %></th>
-        <th><%= "Add review" %></th>
-        <% end %>
+
+      <th>Genre</th>
+      <th>Minimum number of players</th>
+      <th>Maximum number of players</th>
+      <th>Minimum age</th>
+      <th>Avarage rating</th>
+      <% if user_signed_in? %>
+      <th><%= "Rate the game" %></th>
+      <th><%= "Add review" %></th>
+      <% end %>
 
     </tr>
   </thead>
 
-   
-      <tr>
-       
-        <td><%= @game.genre %></td>
-        <td><%= @game.minplayer %></td>
-        <td><%= @game.maxplayer %></td>
-        <td><%= @game.minage %></td>
-        <td><%= @game.ratings.average(:points) %></td> 
-        <% if user_signed_in? %>
-        <% if @existing_review.points %>
-        <td> <%= "You rated the game #{@existing_review.points}"%></td>
-        <% else %>
-        <td><%= simple_form_for(@existing_review) do |f| %>
-         <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :game_id, :value => @game.id %>        
-        <%= f.input :points, label: false, collection: 1..10 %>      
-         <%= f.submit "oceń "%> 
-       <% end %>
-       
-      
-         <% end %>
-          </td>
-        <td><%= "Adding review?" %></td>
-        <% end %> 
-      </tr>
-      </tr>
-    
+
+  <tr>
+
+    <td><%= @game.genre %></td>
+    <td><%= @game.minplayer %></td>
+    <td><%= @game.maxplayer %></td>
+    <td><%= @game.minage %></td>
+    <td><%= @game.ratings.average(:points) %></td> 
+    <% if user_signed_in? %>
+    <% if @existing_review.points %>
+    <td> <%= "You rated the game #{@existing_review.points}"%></td>
+    <% else %>
+    <td><%= simple_form_for(@existing_review) do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :game_id, :value => @game.id %>        
+      <%= f.input :points, label: false, collection: 1..10 %>      
+      <%= f.submit "oceń "%> 
+      <td><%= "Adding review?" %></td>
+      <% end %>
+      <% end %>
+
+      <%else%>
+      <td>Log in to rate the game      
+        <% end %>
+      </td>
+
+
+    </tr>
+  </tr>
+
 </table>
 
 
-   
-      
-      <% @game.ratings.each do |rating| %>
-      
-      <%if rating.review%>
-      <div class="panel panel-default">
+
+
+<% @game.ratings.each do |rating| %>
+
+<%if rating.review%>
+<div class="panel panel-default">
   <div class="panel-body">
     <%= rating.review %>
   </div>
-  <div class="panel-footer">User: <%= User.find(rating.user_id).username %></div>
+    <% if user_signed_in? %>
+      <div class="panel-footer">User: <%= User.find(rating.user_id).username %></div>
+    <% else %>
+      <div class="panel-footer">User: Log in to see author </div>
+    <% end %>
 </div> 
-      
-        <% end %>
-        <% end %>
 
+<% end %>
+<% end %>
+<% if user_signed_in? %>
 <div><h2>Add review </h2></div>
 <%= render "ratings/form"%>
-
+<%end%>
